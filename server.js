@@ -1,11 +1,14 @@
 const express = require ('express');
 const bodyParser = require ('body-parser');
-const graphqlHttp = require('express-graphql');
-const {buildSchema} = require('graphql')
+const graphqlHttp = require('express-graphql').graphqlHTTP;
+const {buildSchema} = require('graphql');
+const mongoose = require('mongoose');
 
 const app = express();
 
 app.use (bodyParser.json());
+
+
 
 const events = [];
 
@@ -17,14 +20,14 @@ app.use('/graphql', graphqlHttp({
         _id : ID!
         title : String
         description: String
-        price: FLoat
+        price: Float
         date: String
     }
 
     input EventInput {
         title : String
         description: String
-        price: FLoat
+        price: Float
         date: String
     }
 
@@ -33,7 +36,7 @@ app.use('/graphql', graphqlHttp({
         events: [Event!]!
     }
     type RootMutation {
-        createEvent(event:Input: EventInput): Event
+        createEvent(eventInput: EventInput): Event
 
     }
 
@@ -62,4 +65,10 @@ app.use('/graphql', graphqlHttp({
     },
     graphiql : true
 }))
-app.listen(3000);
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.g6hli.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+).then(()=>{
+    app.listen(3000);
+    console.log('connected');
+}).catch(err=>{
+    console.log(err);
+})
