@@ -19,10 +19,12 @@
   },
   "homepage": "https://github.com/rokamba/Listings#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
     "express": "^4.17.3",
     "express-graphql": "^0.12.0",
     "graphql": "^15.8.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.8"
   },
   "devDependencies": {
