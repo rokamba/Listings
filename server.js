@@ -4,13 +4,12 @@ const graphqlHttp = require('express-graphql').graphqlHTTP;
 const {buildSchema} = require('graphql');
 const mongoose = require('mongoose');
 
+const Event = require('./models/listings')
+
 const app = express();
 
 app.use (bodyParser.json());
 
-
-
-const events = [];
 
 //queries and mutation
 app.use('/graphql', graphqlHttp({
@@ -47,25 +46,37 @@ app.use('/graphql', graphqlHttp({
     `),
     rootValue:{
         events: () => {
-            return events
+            Event.find().then(events =>{
+                return events.map(event =>
+                   { return { ...event._doc, _id:event._doc._id.toString()}
+                });
+
+            }).catch (err =>{
+                throw err;
+            })
+        
         },
         createEvent: (args) =>{
-            const event = {
-                _id: Math.random().toString(),
+            const event = new Event({
                 title: args.eventInput.title,
-                description: args.eventInput.description,
-                price: +args.eventInput.price,
-                date: args.eventInput.date
-
-            };
-            events.push (event);
-            return event;
-
+                 description: args.eventInput.description,
+                 price: +args.eventInput.price,
+                 date: new Date(args.eventInput.date)
+                
+            });
+           return event.save().then(result =>{
+                console.log(result);
+                return {...result._doc, _id:event._doc._id.toString()};
+            }).catch(err =>{
+                console.log(err);
+                throw err;
+            })
+            
         },
     },
     graphiql : true
 }))
-mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.g6hli.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.g6hli.mongodb.net/${process.env.MONDO_DB}?retryWrites=true&w=majority`
 ).then(()=>{
     app.listen(3000);
     console.log('connected');
