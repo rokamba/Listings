@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const bookingSchema = new Schema(
   {
-    event: {
+    listing: {
       type: Schema.Types.ObjectId,
       ref: 'Listing'
     },
