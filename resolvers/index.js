@@ -1,10 +1,10 @@
 const authResolver = require('./auth');
-const listingsResolver = require('./listings');
+const listingResolver = require('./listing');
 const bookingResolver = require('./booking');
 
 const rootResolver = {
   ...authResolver,
-  ...listingsResolver,
+  ...listingResolver,
   ...bookingResolver
 };
 
