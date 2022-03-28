@@ -1,6 +1,6 @@
 const Listing = require('../models/Listing');
 const User = require('../models/User');
-const { dateToString } = require('../helpers/date');
+const { dateToString } = require('../utils/helpers/date');
 
 const listings = async listingIds => {
   try {

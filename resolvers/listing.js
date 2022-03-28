@@ -1,4 +1,5 @@
 const Listing = require('../models/Listing');
+const User = require('../models/User');
 
 const { transformListing } = require('./merge');
   
@@ -13,19 +14,22 @@ module.exports = {
         throw err;
       }
     },
-    createListing: async args => {
+    createEvent: async (args, req) => {
+      if (!req.isAuth) {
+        throw new Error('Unauthenticated!');
+      }
       const listing = new Listing({
         title: args.listingInput.title,
         description: args.listingInput.description,
         price: +args.listingInput.price,
         date: new Date(args.listingInput.date),
-        creator: '5c0fbd06c816781c518e4f3e'
+        creator: req.userId
       });
       let createdListing;
       try {
         const result = await listing.save();
         createdListing = transformListing(result);
-        const creator = await User.findById('5c0fbd06c816781c518e4f3e');
+        const creator = await User.findById(req.userId);
   
         if (!creator) {
           throw new Error('User not found.');
