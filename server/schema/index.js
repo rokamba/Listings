@@ -14,7 +14,6 @@ type Listing {
   title: String!
   description: String!
   price: Float!
-  date: String!
   creator: User!
 }
 
@@ -35,7 +34,6 @@ input ListingInput {
   title: String!
   description: String!
   price: Float!
-  date: String!
 }
 
 input UserInput {

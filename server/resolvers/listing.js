@@ -22,7 +22,6 @@ module.exports = {
         title: args.listingInput.title,
         description: args.listingInput.description,
         price: +args.listingInput.price,
-        date: new Date(args.listingInput.date),
         creator: req.userId
       });
       let createdListing;
