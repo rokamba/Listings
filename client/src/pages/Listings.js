@@ -8,7 +8,7 @@ class Listings extends Component {
 
   state ={
     creating: false,
-    listing: []
+    listings: []
   };
 
   static contextType = Authentication;
@@ -75,6 +75,9 @@ class Listings extends Component {
       }
       return res.json(); 
     })
+    .then(resData =>{
+      this.fetchListing();
+    })
     
     .catch(err =>{
       console.log(err)
@@ -125,8 +128,8 @@ class Listings extends Component {
       });
   }
   render() {
-    const listings = this.state.listing.map(listing =>  {
-      return <li key = {listing._id} className='listings-li'>{listing.title}</li>;
+    const list = this.state.listings.map(listing =>  {
+      return (<li key = {listing._id} className='listings-li'>{listing.title}</li>);
     });
 
   return (
@@ -152,8 +155,8 @@ class Listings extends Component {
       <p>Add services</p>
       <button className='.btn' onClick={this.createListingHandler}>Create Service</button>
     </div>)}
-    <section className='listings-list'>{listings}
-    </section>
+    <ul className='listings-list'>{list}
+    </ul>
     </React.Fragment>
   )
 };

@@ -8,7 +8,7 @@
 
 }
 
-.listing.list {
+.listings-list {
     width: 40rem;
     max-width: 90%;
     margin: 2rem auto;
@@ -16,7 +16,7 @@
     padding: 0;
 }
 
-.listing-li {
+.listings-li {
     margin: 1rem 0;
     padding: 1rem;
     border: 1px solid #000000;
