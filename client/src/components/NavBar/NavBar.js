@@ -1,18 +1,37 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom';
+import Authentication from '../../context/authentication';
+import './NavBarStyle.css'
 
-const navBar = props =>{
-    <header>
-        <div className='main-nav-log'>
-            <h1>
+const navBar = props =>(
+    <Authentication.Consumer>
+        {context =>{
+            return(
+            <header className='navigation'>
+            <div className='main-nav-log'>
+                <h1>Listings</h1>
+             </div>   
+    
+                <nav className='main-nav-item'>
+                    <ul>
+                        {!context.token &&(
+                    <li><NavLink to="/auth">Login</NavLink></li>)}
 
-            </h1>
-            <nav className='main-nav-item'>
-                <li><NavLink to="/auth">Login</NavLink></li>
-                <li><NavLink to="/listing">Listings</NavLink></li>
-                <li><NavLink to="/bookings">Bookings</NavLink></li>
-            </nav>
+                    <li><NavLink to="/listing">Listings</NavLink></li>
 
-        </div>
-    </header>
-}
+                    
+                    <li><NavLink to="/bookings">Bookings</NavLink></li>
+                    </ul>
+                </nav>
+    
+            
+        </header>
+            );
+
+        }}
+    
+    </Authentication.Consumer>
+);
+
+export default navBar;
+
