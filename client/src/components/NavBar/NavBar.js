@@ -19,8 +19,8 @@ const navBar = props =>(
 
                     <li><NavLink to="/listing">Listings</NavLink></li>
 
-                    
-                    <li><NavLink to="/bookings">Bookings</NavLink></li>
+                    {context.token &&(
+                    <li><NavLink to="/bookings">Bookings</NavLink></li>)}
                     </ul>
                 </nav>
     
