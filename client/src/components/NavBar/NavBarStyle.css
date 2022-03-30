@@ -29,6 +29,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
+    align-items: center;
 }
 
 .main-nav-item li{
@@ -36,14 +37,23 @@
 
 }
 
-.main-nav-item a {
+.main-nav-item a,
+.main-nav-item button {
     text-decoration: none;
     color: white;
+    padding: 0.25rem 0.5rem;
+    border:none;
+    font: inherit;
+    background: transparent;
+    cursor: pointer;
 }
 
 .main-nav-item a:hover,
 .main-nav-item a:active
-.main-nav-item a.active{
+.main-nav-item a.active
+.main-nav-item button:hover
+.main-nav-item button:active{
     color:#434c5e ;
+    
 
 }

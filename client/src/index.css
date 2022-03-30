@@ -3,4 +3,34 @@ body {
   padding: 0;
 }
 
+.form label, .form input{
+  width: 100%;
+  display: block;
+}
 
+.form label{
+  margin-bottom: .5rem;
+}
+.form {
+  margin: 1rem;
+}
+
+.form-action button,
+.btn {
+  background:#2e3440;
+  color: whitesmoke;
+  font: inherit;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin: 0 1rem;
+  box-shadow: 1px 1px 5px black;
+  cursor: pointer;
+}
+
+.form-action button:hover,
+.form-action button:active,
+.btn:hover,
+.btn:active{
+  background-color: #434c5e;
+}
