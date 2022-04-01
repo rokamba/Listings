@@ -25,19 +25,23 @@ class App extends Component{
   return (
     <BrowserRouter>
     <React.Fragment>
-    <NavBar/>
     <Authentication.Provider value = {{token: this.state.token, userId:this.state.userId, login: this.login, logout: this.logout}}>
+    <NavBar/>
+
     <main className='content'>
     <Switch>
-    <Redirect from="/" to ="/auth" exact/>
-    <Route path='/auth' component = {Auth}></Route>
+    {!this.state.token &&<Redirect from="/" to ="/auth" exact/>}
+    {this.state.token &&<Redirect from="/" to ="/listing" exact/>}
+    {this.state.token &&<Redirect from="/auth" to ="/listing" exact/>}
+
+    {!this.state.token &&<Route path='/auth' component = {Auth}></Route>}
     <Route path='/listing' component = {Listings}></Route>
-    <Route path='/bookings' component = {Bookings}></Route>
+    {this.state.token &&<Route path='/bookings' component = {Bookings}></Route>}
     </Switch>
     </main>
     </Authentication.Provider>
     </React.Fragment>
-    
+
     </BrowserRouter>
   );
 }

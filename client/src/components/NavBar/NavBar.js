@@ -7,11 +7,11 @@ const navBar = props =>(
     <Authentication.Consumer>
         {context =>{
             return(
-            <header className='navigation'>
+<header className='navigation'>
             <div className='main-nav-log'>
                 <h1>Listings</h1>
-             </div>   
-    
+             </div>
+
                 <nav className='main-nav-item'>
                     <ul>
                         {!context.token &&(
@@ -19,13 +19,14 @@ const navBar = props =>(
 
                     <li><NavLink to="/listing">Listings</NavLink></li>
 
-                    
-                    <li><NavLink to="/bookings">Bookings</NavLink></li>
+                    {context.token &&(
+                    <li><NavLink to="/bookings">Bookings</NavLink></li>)}
                     </ul>
                 </nav>
-    
-            
+
+
         </header>
+
             );
 
         }}

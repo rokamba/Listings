@@ -25,6 +25,12 @@ type User {
   createdListings: [Listing!]
 }
 
+type AuthData {
+  userId: ID!
+  token: String!
+  tokenExpiration: Int!
+}
+
 input ListingInput {
   title: String!
   description: String!
@@ -40,6 +46,8 @@ input UserInput {
 type RootQuery {
     listing: [Listing!]!
     bookings: [Booking!]!
+    login(email: String!, password: String!): AuthData!
+    
 }
 
 type RootMutation {
