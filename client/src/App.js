@@ -41,7 +41,7 @@ class App extends Component {
     </main>
     </Authentication.Provider>
     </React.Fragment>
-    
+
     </BrowserRouter>
   );
 }

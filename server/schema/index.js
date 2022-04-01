@@ -47,6 +47,10 @@ type RootQuery {
     listing: [Listing!]!
     bookings: [Booking!]!
     login(email: String!, password: String!): AuthData!
+<<<<<<< HEAD:server/schema/index.js
+=======
+    
+>>>>>>> f2609035a0079519b16a8cfbb852223458b9d2ed:schema/index.js
 }
 
 type RootMutation {
