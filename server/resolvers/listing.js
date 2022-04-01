@@ -4,7 +4,7 @@ const User = require('../models/User');
 const { transformListing } = require('./merge');
   
 module.exports = {
-    listings: async () => {
+    listing: async () => {
       try {
         const listings = await Listing.find();
         return listings.map(listing => {
@@ -14,7 +14,7 @@ module.exports = {
         throw err;
       }
     },
-    createEvent: async (args, req) => {
+    createListing: async (args, req) => {
       if (!req.isAuth) {
         throw new Error('Unauthenticated!');
       }
@@ -22,7 +22,7 @@ module.exports = {
         title: args.listingInput.title,
         description: args.listingInput.description,
         price: +args.listingInput.price,
-        date: new Date(args.listingInput.date),
+        date: args.listingInput.date,
         creator: req.userId
       });
       let createdListing;
@@ -34,7 +34,7 @@ module.exports = {
         if (!creator) {
           throw new Error('User not found.');
         }
-        creator.createdListings.push(Listing);
+        creator.createdListings.push(listing);
         await creator.save();
   
         return createdListing;

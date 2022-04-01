@@ -3,7 +3,7 @@ body {
   padding: 0;
 }
 
-.form label, .form input{
+.form label, .form input, .form textarea{
   width: 100%;
   display: block;
 }
