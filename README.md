@@ -37,6 +37,15 @@
   ## Installation:
   npm install
   npm run develop
+  
+## Demo
+
+
+
+
+
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/91441998/161361119-d179d800-7c56-4b9b-8c06-2da3f2656c6b.gif)
+
 		
 ## License:
  MIT License
